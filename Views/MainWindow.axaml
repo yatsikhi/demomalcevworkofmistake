@@ -1,0 +1,60 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="demomalcevworkofmistake.Views.MainWindow"
+        Background="#FFFFFF"
+        Title="demomalcev">
+    
+    <Border Width="340"
+            Padding="32"
+            CornerRadius="15"
+            Background="#D2F6E7"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+        
+        <StackPanel Margin="5"
+                    Spacing="15"
+                    VerticalAlignment="Center">
+            <Image Source="/Assets/images/pencil.jpg"
+                   Width="50"
+                   Stretch="Uniform"
+                   HorizontalAlignment="Center">
+                
+            </Image>
+            
+            <TextBlock Text="Чудо Концелярия "
+                       Foreground="#70B2AF"
+                       FontSize="26"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+            
+                    
+                   
+
+            <TextBlock Text="Авторизация"
+                       Foreground="#D2F6E7"
+                       FontSize="18"
+                       HorizontalAlignment="Center"/>
+
+            <TextBox x:Name="LoginBox"
+                     Watermark="Введите логин"/>
+            <TextBox x:Name="PasswordBox"
+                     Watermark="Введите пароль"
+                     PasswordChar="*"/>
+
+            <Button Content="Войти"
+                    Click="Sign_in"
+                    Height="40"
+                    Background="#70B2AF"
+                    Foreground="#D2F6E7"/>
+
+            <TextBlock x:Name="ErrorBlock"
+                       Foreground="Red"
+                       TextWrapping="Wrap"
+                       HorizontalAlignment="Center"/>
+
+        </StackPanel>
+    </Border>
+</Window>

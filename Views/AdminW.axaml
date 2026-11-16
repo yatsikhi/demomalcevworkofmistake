@@ -1,0 +1,182 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="clr-namespace:demomalcevworkofmistake.Models"
+        mc:Ignorable="d"
+        x:Class="demomalcevworkofmistake.AdminW"
+        Title="Панель продуктов"
+        Background="#FFFFFF"
+        MinHeight="800">
+    <TabControl >
+
+        <!-- Вкладка товаров -->
+        <TabItem Header="Товары" Foreground="#70B2AF">
+            <StackPanel Margin="15" Spacing="10">
+
+                <TextBlock Text="Панель продуктов"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="#70B2AF" />
+
+                <TextBox x:Name="SearchBox"
+                         Watermark="Поиск товара"
+                         TextChanging="SearchBox_OnTextChanging" />
+
+                <ComboBox x:Name="SortBox"
+                          Width="200"
+                          HorizontalAlignment="Left"
+                          SelectionChanged="SortBox_SelectionChanged" />
+
+                <ComboBox x:Name="CategoryBox"
+                          Width="200"
+                          HorizontalAlignment="Left"
+                          SelectionChanged="CategoryBox_SelectionChanged">
+
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="models:Category">
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+
+                </ComboBox>
+
+                <ListBox x:Name="TovarBox" Height="300">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="models:Product">
+
+                            <Border Background="{Binding RowBackground}"
+                                    CornerRadius="5"
+                                    Padding="8"
+                                    Margin="3">
+
+                                <StackPanel Orientation="Horizontal"
+                                            Spacing="15">
+
+                                    <Image Source="{Binding ImageBitmap}"
+                                           Width="80"
+                                           Height="80"
+                                           Stretch="UniformToFill"/>
+
+                                    <StackPanel Spacing="5"
+                                                VerticalAlignment="Center"
+                                                >
+
+                                        <TextBlock Text="{Binding Name}"
+                                                   FontWeight="Bold"
+                                                   Foreground="Black"/>
+
+                                        <TextBlock Text="{Binding Price}" Foreground="Black"/>
+
+                                        <TextBlock Text="{Binding About}"
+                                                   TextWrapping="Wrap" Foreground="Black"/>
+
+                                        <TextBlock Text="{Binding DiscountText}" Foreground="Black"/>
+
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                            </Border>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <TextBlock x:Name="ErrorBlock"
+                           Foreground="Red"
+                           TextWrapping="Wrap" />
+
+                <Button Content="Удалить выбранный товар"
+                        Click="DeleteProduct_Click"
+                        Background="#70B2AF"/>
+                <Button Content="назад"
+                        Click="Back_Button"
+                        HorizontalAlignment="Right"
+                        Background="#70B2AF"/>
+                
+                <Button Content="Редактировать выбранный товар"
+                        Click="EditProduct_Click" Background="#70B2AF"/>
+
+                <Button Content="Сохранить изменения"
+                        Click="SaveEdit_Click" Background="#70B2AF"/>
+            </StackPanel>
+        </TabItem>
+
+        <!-- Вкладка добавления -->
+        <TabItem Header="Добавить товар" Foreground="#70B2AF">
+    <ScrollViewer>
+        <StackPanel Margin="20" Spacing="10" >
+
+            <TextBlock Text="Добавление нового товара"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Foreground="#70B2AF"/>
+
+            <TextBox x:Name="ProductNameBox"
+                     Watermark="Название товара"/>
+
+            <TextBox x:Name="PriceBox"
+                     Watermark="Цена"/>
+
+            <TextBox x:Name="DiscountBox"
+                     Watermark="Скидка (%)"/>
+
+            <TextBox x:Name="AboutBox"
+                     Watermark="Описание"/>
+
+            <TextBox x:Name="ImageBox"
+                     Watermark="Название изображения, например shoe1.png"/>
+
+            <TextBlock Text="Единица измерения" Foreground="#70B2AF"/>
+            <ComboBox x:Name="UnitBox">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="models:Unit">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Text="Производитель" Foreground="#70B2AF"/>
+            <ComboBox x:Name="CreatorBox">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="models:Creator">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Text="Поставщик" Foreground="#70B2AF"/>
+            <ComboBox x:Name="DeliverBox">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="models:Deliver">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Text="Категория" Foreground="#70B2AF"/>
+            <ComboBox x:Name="CategoryAddBox">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="models:Category">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Button Content="Добавить товар"
+                    Click="AddProduct_Click" Background="#70B2AF" />
+            
+            <TextBlock x:Name="AddErrorBlock"
+                       Foreground="Red"
+                       TextWrapping="Wrap"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</TabItem>
+
+    </TabControl>
+
+
+</Window>
